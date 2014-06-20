@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
   def create
     auth = env['omniauth.auth']
-    session[:access_token] = auth["credentials"]["token"]
-    client = Octokit::Client.new(:access_token => session[:access_token])
+    # session[:access_token] = auth["credentials"]["token"]
+    # client = Octokit::Client.new(:access_token => session[:access_token])
     # USING client I can get to all repos
     # client.repositories
 
@@ -19,8 +19,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    flash[:notice] = "You have been signed out."
+    # flash[:notice] = "You have been signed out."
 
-    redirect_to '/'
+    redirect_to '/', notice: "You have been signed out."
   end
 end
