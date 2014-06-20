@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   end
 
   def self.create_from_omniauth(auth)
-    
     create(
       provider: auth.provider,
       uid: auth.uid,

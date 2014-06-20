@@ -39,6 +39,8 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'omniauth-github'
+gem 'octokit'
+gem 'haml-rails'
 
 group :test, :development do
   gem 'rspec-rails'
@@ -46,5 +48,6 @@ group :test, :development do
   gem 'pry-rails'
   gem 'launchy'
   gem 'dotenv-rails'
+  gem 'awesome_print'
 end
 

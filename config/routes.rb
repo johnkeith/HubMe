@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
-  get '/auth/github/callback', to: 'sessions#create'
+  root "welcome#index"
 
-  resources :sessions, only: [:destroy]
+  get '/auth/github/callback', to: 'sessions#create'
+  get '/signout', to: 'sessions#destroy', as: :signout
+
+  get '/:username', to: 'profiles#show', as: :profiles
+  
+  # match 'auth/github/callback', to: 'sessions#create', via: [:get, :post]
+  # match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  # match 'signout', to: 'sessions#destroy', as: 'signout', via: [:post]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
