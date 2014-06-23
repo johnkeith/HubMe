@@ -15,4 +15,12 @@ class User < ActiveRecord::Base
       avatar_url: auth.info.image
     )
   end
+
+  def self.gather_repo_data(auth, user)
+    session[:access_token] = auth["credentials"]["token"]
+    client = Octokit::Client.new(:access_token => session[:access_token])
+    client.repositories
+    # ask EEs - how should I structure it so that it can save
+    # to the user model and the repos model and the langs model
+  end
 end
