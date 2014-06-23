@@ -2,11 +2,13 @@ require 'rails_helper'
 
 feature "user authorizes with github and creates account" do
 
-  scenario "user is signed in" do
+  scenario "user is not signed in" do
+    visit '/'
 
+    expect(page).to_not have_content 'Sign out'
   end
 
-  scenario "user is not signed in" do
+  scenario " in" do
     # sign a user in using mock object
     user = User.create(
       provider: "github", 
@@ -20,6 +22,7 @@ feature "user authorizes with github and creates account" do
     visit '/'
 
     click_on 'Sign in with Github'
+    # to see what's going on, use save_and_open_page
 
     click_on 'Sign out'
 

@@ -1,10 +1,12 @@
 class SessionsController < ApplicationController
   def create
     auth = env['omniauth.auth']
-    # session[:access_token] = auth["credentials"]["token"]
-    # client = Octokit::Client.new(:access_token => session[:access_token])
+    session[:access_token] = auth["credentials"]["token"]
+    client = Octokit::Client.new(:access_token => session[:access_token])
     # USING client I can get to all repos
-    # client.repositories
+    client.repositories
+
+    
 
     # octo_user = client.user
     # octo_user.login
