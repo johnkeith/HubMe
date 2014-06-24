@@ -24,11 +24,11 @@ Repo_languages
 
 user
 has_many :repos
-has_many :languages, through: repo_languages
+has_many :languages, through: :repo_languages
 
 repo
 belongs_to :user
-
+has_many :languages, through: :repo_languages
 ----------------
 
 When a user logs in, the 

@@ -7,21 +7,7 @@
     = stylesheet_link_tag :application, :media => 'all'
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
-  %body
-    / = render 'flashes'
-    / %nav.navbar.navbar-default.navbar-fixed-top
-    /   .container-fluid
-    /     .navbar-header
-    /       %a.btn.btn-navbar{ "data-toggle".to_sym => "collapse", "data-target".to_sym => ".nav-collapse"}
-    /         %span.icon-bar
-    /         %span.icon-bar
-    /         %span.icon-bar
-    /       %a.brand{:href => '/'} Github Profiles
-    /     .navbar-collapse.collapse
-    /       %ul.nav.navbar-nav.navbar-right
-    /         %li
-    /           = link_to "Home", root_path
-            
+  %body     
     %nav.navbar.navbar-default{role: "navigation"}
       .container-fluid
         .navbar-header
@@ -31,7 +17,6 @@
             %span.icon-bar
             %span.icon-bar
           %a.navbar-brand{href: "#"} Github Profiles
-        / Collect the nav links, forms, and other content for toggling
         .collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             %li
@@ -39,6 +24,5 @@
                 = link_to "Sign out", signout_path
               - else
                 = link_to "Sign in with Github", "/auth/github"
-    / /.navbar-collapse
-  / /.container-fluid
+  / = render 'flashes'
   = yield

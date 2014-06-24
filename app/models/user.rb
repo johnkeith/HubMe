@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  has_many :repos
+  has_many :repo_languages, through: :repos
+  has_many :languages, through: :repo_languages
+
   def self.find_or_create_from_omniauth(auth)
     provider = auth.provider
     uid = auth.uid
@@ -15,15 +19,4 @@ class User < ActiveRecord::Base
       avatar_url: auth.info.image
     )
   end
-
-  # def self.gather_repo_data(auth)
-  #   session[:access_token] = auth["credentials"]["token"]
-  #   client = Octokit::Client.new(:access_token => session[:access_token])
-  #   client.repositories.each do |repo|
-  #   # get hash of languages
-  #   client.languages(repo[:full_name])
-  #   binding.pry
-  #   # ask EEs - how should I structure it so that it can save
-  #   # to the user model and the repos model and the langs model
-  # end
 end

@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
     session[:access_token] = auth["credentials"]["token"]
     # pagination limiting.... what can be done?
-    client = Octokit::Client.new(:access_token => session[:access_token], :per_page => "10000")
+    client = Octokit::Client.new(:access_token => session[:access_token], :auto_paginate => true)
     
     client.repositories.each do |repo|
       if Repo.where(user_id: user.id, name: repo[:name]).empty?
@@ -17,12 +17,14 @@ class SessionsController < ApplicationController
       repo_langs = client.languages(repo[:full_name]).to_attrs
 
       repo_langs.each do |lang_name, code_amount|
-        if Language.where(name: lang_name).empty?
+        if added_repo.nil?
+          next
+        elsif Language.where(name: lang_name).empty?
           new_lang = Language.create(name: lang_name)
-          RepoLanguage.create(repo_id: added_repo.id, language_id: new_lang.id)
+          RepoLanguage.create(repo_id: added_repo.id, language_id: new_lang.id, quantity: code_amount)
         else
           old_lang = Language.where(name: lang_name)
-          RepoLanguage.create(repo_id: added_repo.id, language_id: old_lang[0].id)
+          RepoLanguage.create(repo_id: added_repo.id, language_id: old_lang[0].id, quantity: code_amount)
         end
       end
       # puts repo[:name]
