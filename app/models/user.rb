@@ -16,11 +16,14 @@ class User < ActiveRecord::Base
     )
   end
 
-  def self.gather_repo_data(auth, user)
-    session[:access_token] = auth["credentials"]["token"]
-    client = Octokit::Client.new(:access_token => session[:access_token])
-    client.repositories
-    # ask EEs - how should I structure it so that it can save
-    # to the user model and the repos model and the langs model
-  end
+  # def self.gather_repo_data(auth)
+  #   session[:access_token] = auth["credentials"]["token"]
+  #   client = Octokit::Client.new(:access_token => session[:access_token])
+  #   client.repositories.each do |repo|
+  #   # get hash of languages
+  #   client.languages(repo[:full_name])
+  #   binding.pry
+  #   # ask EEs - how should I structure it so that it can save
+  #   # to the user model and the repos model and the langs model
+  # end
 end

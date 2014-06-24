@@ -9,7 +9,6 @@ Users
 
 Repos
 - user_id
-- language_id
 - name
 - html_url
 - profile_visiblity
@@ -18,7 +17,7 @@ Languages
 - name
 
 Repo_languages
-- user_id
+- language_id
 - repo_id
 
 --Models--

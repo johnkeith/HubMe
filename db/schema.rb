@@ -11,10 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618195432) do
+ActiveRecord::Schema.define(version: 20140623215651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "languages", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "languages", ["name"], name: "index_languages_on_name", unique: true, using: :btree
+
+  create_table "repo_languages", force: true do |t|
+    t.integer  "repo_id",     null: false
+    t.integer  "language_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "repo_languages", ["repo_id", "language_id"], name: "index_repo_languages_on_repo_id_and_language_id", unique: true, using: :btree
+
+  create_table "repos", force: true do |t|
+    t.integer  "user_id",                           null: false
+    t.string   "name",                              null: false
+    t.string   "html_url",                          null: false
+    t.boolean  "profile_visibility", default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "repos", ["user_id", "name"], name: "index_repos_on_user_id_and_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "provider",   null: false
