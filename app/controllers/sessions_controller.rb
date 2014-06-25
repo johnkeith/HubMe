@@ -2,17 +2,11 @@ class SessionsController < ApplicationController
   def create
     auth = env['omniauth.auth']
 
-    user = User.find_or_create_from_omniauth(auth)
+    user = UserSignInService.sign_in!(auth)
     set_current_user(user)
 
-    session[:access_token] = auth["credentials"]["token"]
-    client = Octokit::Client.new(:access_token => session[:access_token], :auto_paginate => true)
-
-    Repo.refresh_user_repos(user, client)
-
     flash[:notice] = "You're now signed in as #{user.username}!"
-
-    redirect_to '/'
+    redirect_to user_path(user.username)
   end
 
   def destroy

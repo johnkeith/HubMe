@@ -28,4 +28,7 @@ class Repo < ActiveRecord::Base
   # return new repos added
   end
 
+  def omniauth_client
+    Octokit::Client.new(access_token: auth.credentials.token, auto_paginate: true)
+  end
 end

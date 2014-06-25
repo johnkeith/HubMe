@@ -1,1 +1,12 @@
-%p= @user.username
+%h1= @user.username
+
+%h2 Languages I've Used
+%ul.profile-page-languages
+  - @languages.each do |lang|
+    %li= lang.name
+
+%h2 My Repos
+- @repos.each do |repo|
+  %ul.profile-page-repos
+    %li= repo.name
+    %li= repo.html_url

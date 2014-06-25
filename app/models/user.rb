@@ -19,4 +19,10 @@ class User < ActiveRecord::Base
       avatar_url: auth.info.image
     )
   end
+
+  # def calculate_language_totals
+  #   self.repos.each do |repo|
+  #     langs_in_repo = RepoLanguage.find_by(repo_id: repo.id)
+  #     langs_in_repo.each |
+  # end
 end

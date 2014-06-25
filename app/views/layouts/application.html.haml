@@ -16,7 +16,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{href: "#"} Github Profiles
+          %a.navbar-brand{href: "#"} GitCard
         .collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             %li
@@ -25,4 +25,5 @@
               - else
                 = link_to "Sign in with Github", "/auth/github"
   / = render 'flashes'
-  = yield
+  .container
+    = yield
