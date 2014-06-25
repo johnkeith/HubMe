@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get '/auth/github/callback', to: 'sessions#create'
   get '/signout', to: 'sessions#destroy', as: :signout
 
-  get '/:username', to: 'profiles#show', as: :profiles
+  get '/:username', to: 'users#show', as: 'user'
+  get '/:username', to: 'users#edit', as: 'edit_user'
+
+  # get '/:permalink',      to: 'users#show', as: 'user'
+  # get '/:permalink/edit', to: 'users#edit', as: 'edit_user'
   
   # match 'auth/github/callback', to: 'sessions#create', via: [:get, :post]
   # match 'auth/failure', to: redirect('/'), via: [:get, :post]
