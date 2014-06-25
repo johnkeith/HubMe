@@ -45,6 +45,7 @@ gem 'haml-rails'
 group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'pry-rails'
   gem 'launchy'
   gem 'dotenv-rails'

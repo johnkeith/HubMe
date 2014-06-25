@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 feature "user authorizes with github and creates account" do
+  # before do
+  #   request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:github]
+  # end
 
   scenario "user is not signed in" do
     visit '/'
@@ -8,7 +11,7 @@ feature "user authorizes with github and creates account" do
     expect(page).to_not have_content 'Sign out'
   end
 
-  scenario " in" do
+  scenario "user creates an account and signs in" do
     # sign a user in using mock object
     user = User.create(
       provider: "github", 
