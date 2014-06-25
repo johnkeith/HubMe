@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624013328) do
+ActiveRecord::Schema.define(version: 20140625223933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,18 +41,20 @@ ActiveRecord::Schema.define(version: 20140624013328) do
     t.boolean  "profile_visibility", default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "full_name"
   end
 
   add_index "repos", ["user_id", "name"], name: "index_repos_on_user_id_and_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "provider",   null: false
-    t.string   "uid",        null: false
-    t.string   "username",   null: false
-    t.string   "email",      null: false
-    t.string   "avatar_url", null: false
+    t.string   "provider",     null: false
+    t.string   "uid",          null: false
+    t.string   "username",     null: false
+    t.string   "email",        null: false
+    t.string   "avatar_url",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "access_token"
   end
 
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree

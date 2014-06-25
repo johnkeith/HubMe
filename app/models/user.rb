@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
       uid: auth.uid,
       email: auth.info.email,
       username: auth.info.nickname,
-      avatar_url: auth.info.image
+      avatar_url: auth.info.image,
+      access_token: auth.credentials.token
     )
   end
 
