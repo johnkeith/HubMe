@@ -31,4 +31,18 @@ belongs_to :user
 has_many :languages, through: :repo_languages
 ----------------
 
-When a user logs in, the 
+jk.languages(:name).distinct
+
+shows all my languages without duplication
+
+
+collaborators?
+
+show all javascript repos
+
+month - amount writen in lang per month
+
+hide repos
+
+show ones most recently added
+
