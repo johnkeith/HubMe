@@ -21,9 +21,35 @@ class User < ActiveRecord::Base
     )
   end
 
-  # def calculate_language_totals
-  #   self.repos.each do |repo|
-  #     langs_in_repo = RepoLanguage.find_by(repo_id: repo.id)
-  #     langs_in_repo.each |
-  # end
+  def user_languages_as_hash
+    langs_hash = {}
+
+    self.languages.each do |lang|
+      langs_hash[lang[:name]] = 0
+    end
+
+    langs_hash
+  end
+
+  def user_languages_as_percents(langs_hash)
+    total = langs_hash.values.sum
+
+    langs_hash.each do |lang, amount|
+      langs_hash[lang] = (amount / total.to_f) * 100
+    end
+
+    langs_hash
+  end
+
+  def calculate_language_totals
+    langs_hash = user_languages_as_hash
+
+    self.repo_languages.each do |repo_language|
+      lang = Language.find_by(id: repo_language.language_id).name
+      langs_hash[lang] += repo_language.quantity
+    end
+    
+    user_languages_as_percents(langs_hash)
+  end
+
 end
