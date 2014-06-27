@@ -24,3 +24,25 @@ _old methods
     end
   # return new repos added
   end
+
+
+class RefreshUserReposService < ActiveRecord::Base
+  def self.add_user_repos(ok_client)
+    ok_client.repositories.each do |repo|
+      if Repo.where(user_id: user.id, name: repo[:name]).empty?
+        Repo.create(user_id: user.id, name: repo[:name], html_url: repo[:html_url], profile_visibility: true )
+      end
+    end
+  end
+end
+
+
+class UserSignInService
+  def self.sign_in!(auth)
+    user = User.find_or_create_from_omniauth(auth)
+
+    client = Octokit::Client.new(access_token: auth.credentials.token, auto_paginate: true)
+
+    Repo.refresh_user_repos(user, client)
+  end
+end

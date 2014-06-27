@@ -8,10 +8,10 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body     
-    %nav.navbar.navbar-default{role: "navigation"}
+    %nav.navbar.navbar-default.navbar-fixed-top{role: "navigation"}
       .container-fluid
         .navbar-header
-          %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
             %span.sr-only Toggle navigation
             %span.icon-bar
             %span.icon-bar
@@ -26,4 +26,5 @@
                 = link_to "Sign in with Github", "/auth/github"
   / = render 'flashes'
   .container
-    = yield
+    .main-container
+      = yield

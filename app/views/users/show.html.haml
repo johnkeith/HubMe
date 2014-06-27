@@ -1,12 +1,78 @@
 %h1= @user.username
 
-%h2 Languages I've Used
-%ul.profile-page-languages
-  - @languages.each do |lang|
-    %li= lang.name
+/ %h2 Languages I've Used
+/ %ul.profile-languages
+/   - @languages.each do |lang|
+/     %li= lang.name
 
-%h2 My Repos
-- @repos.each do |repo|
-  %ul.profile-page-repos
-    %li= repo.name
-    %li= repo.html_url
+/ %h2 Percentages of My Repos in Each Language
+
+
+/ %h2 My Repos
+/ - @repos.each do |repo|
+/   %ul.profile-repos
+/     %li= repo.name
+/     %li= repo.html_url
+
+/ loop through each language
+/ create panel.panel-default for each language
+/ within that panel, create ul with lis of each repo matching the language id
+
+/ @languages.each do |lang|
+/   lang = Language.find_by(name: lang)
+/   repo_languages.where(language_id: lang.id)
+
+.row
+  .col-md-8
+    #accordion.panel-group
+      -@languages.each do |lang|
+        .panel.panel-default
+          .panel-heading
+            %h4.panel-title 
+              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse#{lang.id}"}= lang.name
+          .panel-collapse.collapse{:id => "collapse#{lang.id}"}
+            .panel-body
+              %ul
+                - current_user.repo_languages.where(language_id: lang.id).each do |repo_lang|
+                  %li
+                    %a{href: repo_lang.repo.html_url}= repo_lang.repo.name
+  .col-md-4
+    - @langs_as_percents.each do |lang, amount|
+      %ul.profile-languages-as-percents
+        %li= "#{lang}: "
+        %li= amount
+.row
+  .col-md-4.col-md-offset-8
+    - @langs_in_bytes.each do |lang, amount|
+      %ul.profile-languages-as-percents
+        %li= "#{lang}: "
+        %li= amount
+/ .row
+/   .col-md-8
+/     #accordion.panel-group
+/       .panel.panel-default
+/         .panel-heading
+/           %h4.panel-title
+/             %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapseOne"}
+/               Collapsible Group Item #1
+/         #collapseOne.panel-collapse.collapse.in
+/           .panel-body
+/             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+/       .panel.panel-default
+/         .panel-heading
+/           %h4.panel-title
+/             %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapseTwo"}
+/               Collapsible Group Item #2
+/         #collapseTwo.panel-collapse.collapse
+/           .panel-body
+/             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+/       .panel.panel-default
+/         .panel-heading
+/           %h4.panel-title
+/             %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapseThree"}
+/               Collapsible Group Item #3
+/         #collapseThree.panel-collapse.collapse
+/           .panel-body
+/             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+/   .col-md-4
+/     %p test
