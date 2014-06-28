@@ -1,3 +1,12 @@
+--Next Steps--
+Write tests/Setup welcome,login screen
+Write tests for profile page constructor page
+Write tests for profile page display
+
+--Future possibles--
+
+Instead of storing all this info in a database, create a repo on a user's GH page. In the repo, store the person's information in the most efficent way possible for retreiving it and displaying it on the page. Would this be faster than running it through a database? Also, would be better privacy wise: none of your personal information is ever stored by the app. It is all placed in a repo on your profile, giving you full control, where you can delete it at will. 
+
 --Schema--
 
 Users

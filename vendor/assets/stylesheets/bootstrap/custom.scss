@@ -1,3 +1,54 @@
+body {
+  font-family: "Lato", sans-serif;
+  font-size:2.6em;
+  font-weight:300;
+}
+.portfolio-header-row {
+  .portfolio-profile {
+    border: 2px solid black;
+    height:50px;
+    padding:2px;
+    width:50px;
+    -webkit-transition:border-color 1s,width 0.5s, height 0.5s, -webkit-transform 2s;
+    transition:border-color 1s, width 0.5s, height 0.5s, transform 2s;
+    &:hover {
+      border-color:white;
+      height:100px;
+      width:100px;
+    }
+    img {
+      display:inline-block;
+    }
+  }
+}
+.welcome-main {
+  &:before {
+    position: absolute;
+top: 0.5em;
+bottom: 0em;
+left: -1.4em;
+    background-position: 0px 0px;
+    background-image: -webkit-linear-gradient(top, #fff 0, #dcdcdc 5%, #dcdcdc 95%, #fff 100%);
+    background-image: linear-gradient(to bottom, #fff 0, #dcdcdc 5%, #dcdcdc 95%, #fff 100%);
+    background-repeat: no-repeat;
+    background-size: 3px 100%;
+    content: "";
+    width:3px;
+  }
+}
+.welcome-title {
+  background:black;
+  color:white;
+  padding:10px;
+  &:before {
+    position:absolute;
+    left: -4em;
+    width:40px;
+    height:40px;
+    background:blue;
+    content: "";
+  }
+}
 .main-container {
   margin-top: 60px;
 }
@@ -23,8 +74,27 @@
 .profile-repos li {
   display: inline;
 }
-.profile-languages-as-percents li {
-  display: inline;
+.profile-languages-as-percents {
+  // margin-bottom:6px;
+  font-size:32px;
+  .lang-name {
+    background:black;
+    border:2px solid black;
+    color:white;
+    display: inline-block;
+    padding:12.75px;
+    width:225px;
+  }
+  .lang-percent {
+  border:2px solid black;
+  display: inline-block;
+  margin-left:-10px;
+  min-width: 150px;
+  padding:12.75px;
+  }
+  + .profile-languages-as-percents {
+    margin-top:6px;
+  }
 }
 
 // navbar
@@ -42,7 +112,7 @@ $colHighlight   : #d1412e;
   background-color: $bgDefault;
   border-color: $bgHighlight;
   .navbar-brand {
-    background-color: $colDefault;
+    background-color: black;
     color:white;
     &:hover, &:focus { 
       background-color: $colHighlight; 
@@ -87,4 +157,37 @@ $colHighlight   : #d1412e;
         color: $colHighlight;
         background-color: $bgHighlight; }}}
 }
-// /navbar
+
+.panel {
+  -moz-box-shadow: 0px 0px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0px 0px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px rgba(0, 0, 0, 1);
+}
+
+.panel-title {
+  font-size:32px;
+  padding:10px;
+}
+
+.panel-group .panel {
+  border-radius: 0px;
+  border:0px solid black;
+}
+.panel-group .panel ul {
+  list-style: none;
+}
+.panel-group .panel ul li a {
+  color:#333;
+}
+
+.panel-group .panel a {
+  color:white;
+}
+.panel-group .panel .panel-heading {
+  background-color: black;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  box-shadow: 0px 3px 2px 0px rgba(50, 50, 50, 0.75);
+}
+
+

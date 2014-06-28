@@ -50,5 +50,6 @@ group :test, :development do
   gem 'launchy'
   gem 'dotenv-rails'
   gem 'awesome_print'
+  gem 'rack-mini-profiler'
 end
 
