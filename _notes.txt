@@ -1,4 +1,5 @@
 --Next Steps--
+Fix tests for sign in/sign up - add redirect to edit view
 Write tests/Setup welcome,login screen
 Write tests for profile page constructor page
 Write tests for profile page display

@@ -10,6 +10,7 @@ feature "user signs up for first time", %q(
   # I will be redirected to my page after choosing my repos
   scenario "and chooses which repos to display on page" do
     # expect to be redirected to the edit repos page for profiles
+    
   end
 
 end

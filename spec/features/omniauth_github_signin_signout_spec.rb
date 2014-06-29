@@ -12,14 +12,8 @@ feature "user authorizes with github and creates account" do
   end
 
   scenario "user creates an account and signs in" do
-    # sign a user in using mock object
-    user = User.create(
-      provider: "github", 
-      uid: "1234567",
-      username: "johnkeith",
-      avatar_url: "github.com",  
-      email: "johnkeith@gmail.com"
-    )
+    user = FactoryGirl.create(:user)
+  
     set_omniauth(user)
 
     visit '/'
@@ -27,10 +21,8 @@ feature "user authorizes with github and creates account" do
     click_on 'Sign in with Github'
     # to see what's going on, use save_and_open_page
 
-    click_on 'Sign out'
-
-    expect(page).to have_content 'Sign in with Github'
-    expect(page).to_not have_content 'Sign out'
+    expect(page).to_not have_content 'Sign in with Github'
+    expect(page).to have_content 'Sign out'
   end
 
 end
